@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTrex: We Turn Ideas Into Digital Reality</title>
+<meta name="description" content="WebTrex designs and builds websites, mobile apps and custom software for growing businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="site">
+  <header class="nav"><div class="wrap bar">
+    <a href="#home" class="logo"><i>W</i>WebTrex</a>
+    <nav><a href="#about">About</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
+    <button id="authBtn" class="btn dark">Sign in</button>
+  </div></header>
+
+  <section id="home" class="wrap hero">
+    <p class="tag">We Turn Ideas Into Digital Reality.</p>
+    <h1>Building digital experiences that matter.</h1>
+    <p class="sub">We design and develop websites, mobile applications and custom software that help businesses grow.</p>
+    <div class="row"><a class="btn dark" href="#projects">See our projects</a><a class="btn" href="#contact">Start a project</a></div>
+    <dl class="stats"><div><dt id="count">0</dt><dd>Projects shipped</dd></div><div><dt>8</dt><dd>Disciplines under one roof</dd></div><div><dt>1 day</dt><dd>Typical reply time</dd></div></dl>
+  </section>
+
+  <section id="about" class="wrap sec">
+    <h2>A small team that cares about the details.</h2>
+    <p class="lead">WebTrex is a studio of developers and designers. We work with startups and established companies to turn rough ideas into fast, secure, well-made products, from the first sketch to the day it goes live.</p>
+  </section>
+
+  <section id="services" class="wrap sec"><h2>What we build</h2><div id="svc" class="ruled"></div></section>
+
+  <section id="projects" class="wrap sec">
+    <h2>Selected work</h2>
+    <input id="q" type="search" placeholder="Search projects or technologies" aria-label="Search projects">
+    <div id="pills" class="pills"></div>
+    <div id="grid" class="grid3"></div>
+  </section>
+
+  <section id="process" class="wrap sec"><h2>How we work</h2><div id="steps" class="steps"></div></section>
+
+  <section id="contact" class="wrap sec">
+    <h2>Tell us what you want to build.</h2>
+    <form id="cf" class="form narrow">
+      <label>Your name<input name="nm" required></label>
+      <label>Email<input name="em" type="email" required></label>
+      <label>Project type<select name="tp"><option>Website</option><option>Mobile app</option><option>UI/UX design</option><option>Software</option><option>E-commerce</option><option>Something else</option></select></label>
+      <label>Details<textarea name="msg" rows="4" required placeholder="What are you building, and by when?"></textarea></label>
+      <button class="btn dark">Send message</button>
+    </form>
+  </section>
+
+  <footer><div class="wrap bar"><span>&copy; <script>document.write(new Date().getFullYear())</script> WebTrex</span><span>We Turn Ideas Into Digital Reality.</span></div></footer>
+</div>
+
+<main id="admin" hidden>
+  <aside>
+    <a class="logo"><i>W</i>WebTrex</a>
+    <button data-t="projects" class="on">Projects</button>
+    <button data-t="messages">Messages <em id="unread"></em></button>
+    <button id="viewSite">View site</button>
+    <button id="out">Log out</button>
+  </aside>
+  <div class="content">
+    <div id="t-projects" class="panel">
+      <form id="pf" class="form">
+        <h3>Add a project</h3>
+        <input type="hidden" name="pid">
+        <label>Title<input name="ttl" required></label>
+        <div class="two"><label>Category<select name="cat"></select></label><label>Date<input name="date" type="date"></label></div>
+        <label>Description<textarea name="desc" rows="4" required></textarea></label>
+        <div class="two"><label>Live website URL<input name="web" type="url"></label><label>External download URL<input name="dl" type="url"></label></div>
+        <label>Technologies, separated by commas<input name="tech"></label>
+        <div class="two"><label>Thumbnail<input name="thumb" type="file" accept=".jpg,.jpeg,.png,.webp,.svg"></label><label>Gallery images<input name="gal" type="file" multiple accept=".jpg,.jpeg,.png,.webp,.svg"></label></div>
+        <label>Release files: APK, ISO, ZIP, PDF, DOCX, TXT<input name="rel" type="file" multiple accept=".apk,.iso,.zip,.pdf,.docx,.txt,.jpg,.jpeg,.png,.webp,.svg"></label>
+        <div class="row"><button type="button" class="btn dark" data-s="published">Publish</button><button type="button" class="btn" data-s="draft">Save draft</button><button type="button" class="btn" id="cancel">Clear form</button></div>
+      </form>
+      <div id="plist"></div>
+    </div>
+    <div id="t-messages" class="panel" hidden><div id="mlist"></div></div>
+  </div>
+</main>
+
+<dialog id="pm"><div id="pmb"></div></dialog>
+<dialog id="si">
+  <form id="sf" class="form">
+    <h3>Admin sign in</h3>
+    <label>Email<input name="em" type="email" required autocomplete="username"></label>
+    <label>Password<input name="pw" type="password" required autocomplete="current-password"></label>
+    <p id="err" role="alert"></p>
+    <div class="row"><button class="btn dark">Sign in</button><button type="button" class="btn" data-x>Cancel</button></div>
+  </form>
+</dialog>
+<div id="toast" role="status"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
